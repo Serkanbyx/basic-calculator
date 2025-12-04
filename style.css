@@ -1,0 +1,117 @@
+:root {
+    --bg-color: #252525;
+    --calc-body-color: #414141;
+    --display-bg: #1a1a1a; /* Slightly darker than bg-color */
+    --btn-bg: #414141;
+    --btn-hover: #505050;
+    --accent-color: #AF0404;
+    --accent-hover: #FF0000;
+    --text-color: #ffffff;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: var(--bg-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    color: var(--text-color);
+}
+
+.calculator-container {
+    width: 100%;
+    max-width: 400px;
+    padding: 20px;
+}
+
+.calculator {
+    background-color: var(--calc-body-color);
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+}
+
+.display-container {
+    background-color: var(--display-bg);
+    border-radius: 5px;
+    padding: 20px;
+    margin-bottom: 20px;
+    text-align: right;
+    word-wrap: break-word;
+    word-break: break-all;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    min-height: 100px;
+}
+
+.previous-operand {
+    color: rgba(255, 255, 255, 0.75);
+    font-size: 1.2rem;
+    min-height: 1.5rem;
+}
+
+.current-operand {
+    color: var(--text-color);
+    font-size: 2.5rem;
+    font-weight: bold;
+}
+
+.buttons-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+}
+
+.btn {
+    background-color: var(--btn-bg);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 5px;
+    color: var(--text-color);
+    font-size: 1.5rem;
+    padding: 20px;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.1s;
+    user-select: none;
+}
+
+.btn:hover {
+    background-color: var(--btn-hover);
+}
+
+.btn:active {
+    transform: scale(0.95);
+}
+
+.btn.operator, .btn[data-action="calculate"], .btn[data-action="clear"], .btn[data-action="delete"] {
+    background-color: var(--accent-color);
+    border-color: var(--accent-color);
+}
+
+.btn.operator:hover, .btn[data-action="calculate"]:hover, .btn[data-action="clear"]:hover, .btn[data-action="delete"]:hover {
+    background-color: var(--accent-hover);
+}
+
+.span-two {
+    grid-column: span 2;
+}
+
+/* Responsive adjustments */
+@media (max-width: 400px) {
+    .btn {
+        padding: 15px;
+        font-size: 1.2rem;
+    }
+    
+    .current-operand {
+        font-size: 2rem;
+    }
+}
+
