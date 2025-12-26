@@ -2,40 +2,215 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, user-scalable=no"
+    />
     <title>Basic Calculator</title>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
     <div class="calculator-container">
       <div class="calculator">
-        <div class="display-container">
+        <!-- Settings Bar -->
+        <div class="settings-bar">
+          <button
+            class="settings-btn"
+            id="history-toggle"
+            aria-label="Toggle History"
+          >
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <circle cx="12" cy="12" r="10" />
+              <polyline points="12,6 12,12 16,14" />
+            </svg>
+          </button>
+          <button
+            class="settings-btn"
+            id="sound-toggle"
+            aria-label="Toggle Sound"
+          >
+            <svg
+              class="sound-on"
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <polygon points="11,5 6,9 2,9 2,15 6,15 11,19" />
+              <path
+                d="M19.07,4.93a10,10,0,0,1,0,14.14M15.54,8.46a5,5,0,0,1,0,7.07"
+              />
+            </svg>
+            <svg
+              class="sound-off hidden"
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <polygon points="11,5 6,9 2,9 2,15 6,15 11,19" />
+              <line x1="23" y1="9" x2="17" y2="15" />
+              <line x1="17" y1="9" x2="23" y2="15" />
+            </svg>
+          </button>
+        </div>
+
+        <!-- Display -->
+        <div class="display-container" id="display-container">
           <div class="previous-operand" id="previous-operand"></div>
           <div class="current-operand" id="current-operand">0</div>
+          <div class="swipe-hint" id="swipe-hint">← Swipe to delete</div>
         </div>
+
+        <!-- History Panel -->
+        <div class="history-panel" id="history-panel">
+          <!-- Swipe Handle for mobile (left side) -->
+          <div class="history-swipe-handle" id="history-swipe-handle">
+            <div class="swipe-bar"></div>
+          </div>
+          <div class="history-content">
+          <div class="history-header">
+            <button
+              class="close-history-btn"
+              id="close-history"
+              aria-label="Close History"
+            >
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <line x1="18" y1="6" x2="6" y2="18" />
+                <line x1="6" y1="6" x2="18" y2="18" />
+              </svg>
+            </button>
+            <span>History</span>
+            <button
+              class="clear-history-btn"
+              id="clear-history"
+              aria-label="Clear History"
+            >
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <polyline points="3,6 5,6 21,6" />
+                <path
+                  d="M19,6V20a2,2,0,0,1-2,2H7a2,2,0,0,1-2-2V6M8,6V4a2,2,0,0,1,2-2h4a2,2,0,0,1,2,2V6"
+                />
+              </svg>
+            </button>
+          </div>
+          <div class="history-list" id="history-list">
+            <div class="history-empty">No history yet</div>
+          </div>
+          </div>
+        </div>
+
+        <!-- Memory Buttons -->
+        <div class="memory-buttons">
+          <button
+            class="btn memory-btn"
+            data-memory="mc"
+            aria-label="Memory Clear"
+          >
+            MC
+          </button>
+          <button
+            class="btn memory-btn"
+            data-memory="mr"
+            aria-label="Memory Recall"
+          >
+            MR
+          </button>
+          <button
+            class="btn memory-btn"
+            data-memory="m+"
+            aria-label="Memory Add"
+          >
+            M+
+          </button>
+          <button
+            class="btn memory-btn"
+            data-memory="m-"
+            aria-label="Memory Subtract"
+          >
+            M−
+          </button>
+        </div>
+
+        <!-- Calculator Buttons -->
         <div class="buttons-grid">
-          <button class="btn span-two" data-action="clear">AC</button>
-          <button class="btn" data-action="delete">DEL</button>
-          <button class="btn operator" data-operator="/">÷</button>
+          <button
+            class="btn span-two"
+            data-action="clear"
+            aria-label="All Clear"
+          >
+            AC
+          </button>
+          <button class="btn" data-action="delete" aria-label="Delete">
+            DEL
+          </button>
+          <button class="btn operator" data-operator="/" aria-label="Divide">
+            ÷
+          </button>
 
           <button class="btn number" data-number="7">7</button>
           <button class="btn number" data-number="8">8</button>
           <button class="btn number" data-number="9">9</button>
-          <button class="btn operator" data-operator="*">×</button>
+          <button class="btn operator" data-operator="*" aria-label="Multiply">
+            ×
+          </button>
 
           <button class="btn number" data-number="4">4</button>
           <button class="btn number" data-number="5">5</button>
           <button class="btn number" data-number="6">6</button>
-          <button class="btn operator" data-operator="-">-</button>
+          <button class="btn operator" data-operator="-" aria-label="Subtract">
+            -
+          </button>
 
           <button class="btn number" data-number="1">1</button>
           <button class="btn number" data-number="2">2</button>
           <button class="btn number" data-number="3">3</button>
-          <button class="btn operator" data-operator="+">+</button>
+          <button class="btn operator" data-operator="+" aria-label="Add">
+            +
+          </button>
 
           <button class="btn number span-two" data-number="0">0</button>
-          <button class="btn number" data-number=".">.</button>
-          <button class="btn operator" data-action="calculate">=</button>
+          <button class="btn number" data-number="." aria-label="Decimal">
+            .
+          </button>
+          <button
+            class="btn operator"
+            data-action="calculate"
+            aria-label="Equals"
+          >
+            =
+          </button>
+        </div>
+
+        <!-- Memory Indicator -->
+        <div class="memory-indicator" id="memory-indicator">
+          <span class="memory-badge">M</span>
+          <span class="memory-value" id="memory-value">0</span>
         </div>
       </div>
     </div>
